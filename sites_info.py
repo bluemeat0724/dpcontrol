@@ -3,20 +3,20 @@ import os
 
 
 sites_url_dict = {
-    'http://spstte.stte.com/visiualization/index.html': ['技交所大屏(老)', 'dp'],
+    # 'http://spstte.stte.com/visiualization/index.html': ['技交所大屏(老)', 'dp'],
     # 'https://101.231.72.132:8080/DBZX/html/bigScreen20200410/index.html#/': ['技转之眼', 'jzzy'],
     # 'http://101.231.72.146:18080/DBZX/login.html': ['成果库', 'cgk'],
                  # 'http://101.37.157.9:8104/home': ['余杭项目审核(孵化)','fh'],
                  'https://www.gaoxiaotech.com/index.html': ['高校技术市场平台(高校)', 'gx'],
                  'https://challenge.gtechmall.com/passport/login': ['挑战赛（需求）', 'tzs'],
-                 'http://www.peiyuku.com/site/index': ['培育库（企业）', 'pyk'],
+                 # 'http://www.peiyuku.com/': ['培育库（企业）', 'pyk'],
                  # 'http://101.37.157.9:8080/home': ['优股（撮合）','yg'],
-                 'https://www.t2radar.com/login.jsp': ['全球成果（数据）', 'qq'],
-                 'https://tdpc.ytangdata.com/transaction/search': ['TechDeal（服务）', 'td'],
+                 # 'https://www.t2radar.com/login.jsp': ['全球成果（数据）', 'qq'],
+                 'https://www.techdeal.cn': ['TechDeal（服务）', 'td'],
                  'http://www.stte.com/': ['交易所主页（交易）', 'jy'],
                  # 'http://www.kjzjfw.com/Index': ['一券通：创新券（政策）', 'cxq'],
                  # 'https://www.gtechmall.com/': ['技术商城', 'sc'],
-                 'https://webstads.sciinfo.cn/stads.do?index': ['创新助手', 'cxzs']
+                 # 'https://webstads.sciinfo.cn/stads.do?index': ['创新助手', 'cxzs']
 
                  }
 
@@ -84,14 +84,14 @@ site_quanqiu_url = {
                     '报告样例':os.path.join(os.getcwd(),'static','report_sample.pdf')}
 
 # 'https://tdpc.ytangdata.com/transaction/search': ['TechDeal（服务）', 'td'],
-site_td_url={'主页':'https://tdpc.ytangdata.com/transaction/search',
-             '交易（成果）':'https://tdpc.ytangdata.com/transaction/achievement',
-             '交易（需求）':'https://tdpc.ytangdata.com/transaction/demand',
-             '交易（融资)':'https://tdpc.ytangdata.com/transaction/financing',
-             '活动':'https://tdpc.ytangdata.com/activity',
-             '资讯':'https://tdpc.ytangdata.com/news',
-             '圈子':'https://tdpc.ytangdata.com/circle',
-             'APP下载':'https://tdpc.ytangdata.com/app-download',
+site_td_url={'主页':'https://www.techdeal.cn',
+             '交易（成果）':'https://www.techdeal.cn/transaction/achievement',
+             '交易（需求）':'https://www.techdeal.cn/demand',
+             '交易（融资)':'https://www.techdeal.cn/transaction/financing',
+             '活动':'https://www.techdeal.cn/activity',
+             '资讯':'https://www.techdeal.cn/news',
+             '圈子':'https://www.techdeal.cn/circle',
+             'APP下载':'https://www.techdeal.cn/app-download',
              }
 
 # 'http://www.stte.com/': ['交易所主页（交易）', 'jy'],

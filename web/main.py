@@ -19,115 +19,6 @@ def refreshpate():
     co.refresh()
     return 'pagerefreshed'
 
-@op.route('/touch',methods=['GET','POST'])
-def main_touch():
-    title='系统切换'
-    class DynamicForm(FlaskForm):
-        pass
-    operations=[['万方','search'],['技术交易所','exhibit'],['黄页','yellowpage']]
-    setattr(DynamicForm, 'glo', SubmitField('全球成果'))
-    setattr(DynamicForm, 'stte', SubmitField('交易所互动'))
-    setattr(DynamicForm, 'yellow', SubmitField('黄页'))
-    setattr(DynamicForm, 'shanghai', SubmitField('技转动态（上海）'))
-    setattr(DynamicForm, 'changsanjiao', SubmitField('技转动态（长三角）'))
-    setattr(DynamicForm, 'dpl', SubmitField('技交所大屏（老）'))
-    setattr(DynamicForm, 'dpn', SubmitField('技交所大屏'))
-    sites = ['https://www.t2radar.com/projectlib/web_index.do', 'D:/12月2日更新html/init.html',
-             'http://139.196.114.145:8808/#/enterprise',
-             'https://www.t2radar.com/web_bigscreeninter/index.do?id=201912271577418862643',
-             'https://www.t2radar.com/web_bigscreeninter/index.do?id=202008211597992472221',
-             'http://spstte.stte.com/visiualization/index.html']
-    class DynamicForm_b(FlaskForm):
-        pass
-    setattr(DynamicForm_b, 'login', SubmitField('全球成果登陆'))
-    setattr(DynamicForm_b, 'tab_right', SubmitField('切换'))
-    form = DynamicForm(request.form)
-    form_b= DynamicForm_b(request.form)
-    if request.method == 'POST':
-        if form_b.tab_right.data:
-            co.page_operation('tab_right')
-        if form_b.login.data:
-            co.driver.get('https://www.t2radar.com/login.jsp')
-            co.login_global_fill()
-            time.sleep(1)
-            co.driver.get(sites[0])
-        if form.glo.data:
-            co.driver.get(sites[0])
-        if form.stte.data:
-            co.driver.get(sites[1])
-        if form.yellow.data:
-            co.driver.get(sites[2])
-        if form.shanghai.data:
-            co.driver.get(sites[3])
-        if form.changsanjiao.data:
-            co.driver.get(sites[4])
-        if form.dpl.data:
-            co.driver.get(sites[5])
-        if form.dpn.data:
-            return redirect(url_for('web.op_dpn'))
-    return render_template('index.html', form=form, form_b=form_b, title=title)
-
-
-@op.route('/touch_admin',methods=['GET','POST'])
-def main_touch_admin():
-    title='系统切换'
-    class DynamicForm(FlaskForm):
-        pass
-    operations=[['万方','search'],['技术交易所','exhibit'],['黄页','yellowpage']]
-    setattr(DynamicForm, 'glo', SubmitField('全球成果'))
-    setattr(DynamicForm, 'stte', SubmitField('交易所互动'))
-    setattr(DynamicForm, 'yellow', SubmitField('黄页'))
-    setattr(DynamicForm, 'shanghai', SubmitField('技转动态（上海）'))
-    setattr(DynamicForm, 'changsanjiao', SubmitField('技转动态（长三角）'))
-    setattr(DynamicForm, 'dpl', SubmitField('技交所大屏（老）'))
-    setattr(DynamicForm, 'dpn', SubmitField('技交所大屏'))
-    sites=['https://www.t2radar.com/projectlib/web_index.do','D:/12月2日更新html/init.html',
-           'http://139.196.114.145:8808/#/enterprise',
-           'https://www.t2radar.com/web_bigscreeninter/index.do?id=201912271577418862643',
-           'https://www.t2radar.com/web_bigscreeninter/index.do?id=202008211597992472221',
-           'http://spstte.stte.com/visiualization/index.html']
-    class DynamicForm_b(FlaskForm):
-        pass
-    setattr(DynamicForm_b, 'login', SubmitField('全球成果登陆'))
-    setattr(DynamicForm_b, 'tab_right', SubmitField('切换'))
-    setattr(DynamicForm_b, 'initop', SubmitField('初始化'))
-    setattr(DynamicForm_b, 'close', SubmitField('关闭浏览器'))
-    setattr(DynamicForm_b, 'kill', SubmitField('kill&reset'))
-    form = DynamicForm(request.form)
-    form_b= DynamicForm_b(request.form)
-    if request.method == 'POST':
-        if form_b.initop.data:
-            print('initop')
-            co.web_initialize()
-        if form_b.kill.data:
-            os.system('taskkill /f /im chrome.exe')
-            co.web_initialize()
-        if form_b.close.data:
-            print('initop')
-            co.close_browser()
-        if form_b.tab_right.data:
-            co.page_operation('tab_right')
-        if form_b.login.data:
-            co.driver.get('https://www.t2radar.com/login.jsp')
-            co.login_global_fill()
-            time.sleep(1)
-            co.driver.get(sites[0])
-        if form.glo.data:
-            co.driver.get(sites[0])
-        if form.stte.data:
-            co.driver.get(sites[1])
-        if form.yellow.data:
-            co.driver.get(sites[2])
-        if form.shanghai.data:
-            co.driver.get(sites[3])
-        if form.changsanjiao.data:
-            co.driver.get(sites[4])
-        if form.dpl.data:
-            co.driver.get(sites[5])
-        if form.dpn.data:
-            return redirect(url_for('web.op_dpn'))
-    return render_template('index.html', form=form, form_b=form_b, title=title)
-
 
 @op.route('/main_admin',methods=['GET','POST'])
 def op_main_admin():
@@ -161,22 +52,20 @@ def op_main_admin():
             return redirect(url_for('web.op_gx'))
         if form.tzs.data:
             return redirect(url_for('web.op_tzs'))
-        if form.pyk.data:
-            return redirect(url_for('web.op_pyk'))
+        # if form.pyk.data:
+        #     return redirect(url_for('web.op_pyk'))
         if form_b.dpntest.data:
             co.driver.get(ceshidir)
         # if form.jzzy.data:
         #     return redirect(url_for('web.op_jzzy'))
-        if form.qq.data:
-            return redirect(url_for('web.op_qq'))
+        # if form.qq.data:
+        #     return redirect(url_for('web.op_qq'))
         if form.td.data:
             return redirect(url_for('web.op_td'))
         if form.jy.data:
             return redirect(url_for('web.op_jy'))
-        if form.cxzs.data:
-            return redirect(url_for('web.op_cxzs'))
-        if form.dpn.data:
-            return redirect(url_for('web.op_dpn'))
+        # if form.cxzs.data:
+        #     return redirect(url_for('web.op_cxzs'))
         if form.dpn.data:
             return redirect(url_for('web.op_dpn'))
     return render_template('index.html',form=form,form_b=form_b,title=title)
@@ -195,27 +84,26 @@ def op_main():
     form = DynamicForm(request.form)
     form_b= DynamicForm_b(request.form)
     if request.method == 'POST':
-        print('clickButton')
         # if form.cgk.data:
         #     return redirect(url_for('web.op_cgk'))
         if form.gx.data:
             return redirect(url_for('web.op_gx'))
         if form.tzs.data:
             return redirect(url_for('web.op_tzs'))
-        if form.pyk.data:
-            return redirect(url_for('web.op_pyk'))
-        if form.dp.data:
-            co.driver.get('http://spstte.stte.com/visiualization/index.html')
+        # if form.pyk.data:
+        #     return redirect(url_for('web.op_pyk'))
+        # if form.dp.data:
+        #     co.driver.get('http://spstte.stte.com/visiualization/index.html')
         # if form.jzzy.data:
         #     return redirect(url_for('web.op_jzzy'))
-        if form.qq.data:
-            return redirect(url_for('web.op_qq'))
+        # if form.qq.data:
+        #     return redirect(url_for('web.op_qq'))
         if form.td.data:
             return redirect(url_for('web.op_td'))
         if form.jy.data:
             return redirect(url_for('web.op_jy'))
-        if form.cxzs.data:
-            return redirect(url_for('web.op_cxzs'))
+        # if form.cxzs.data:
+        #     return redirect(url_for('web.op_cxzs'))
         if form.dpn.data:
             return redirect(url_for('web.op_dpn'))
     return render_template('index.html',form=form,form_b=form_b,title=title)

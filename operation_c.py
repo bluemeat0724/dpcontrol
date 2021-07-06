@@ -3,10 +3,10 @@ import time
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 
-import pytesseract
-from PIL import Image
-from io import BytesIO
-import base64
+# import pytesseract
+# from PIL import Image
+# from io import BytesIO
+# import base64
 import re
 
 from sites_info import *
@@ -142,16 +142,16 @@ class chrome_operate:
     def refresh(self):  # 刷新
         self.driver.refresh()
 
-    def read_code(self, img_element):
-        '读取验证码'
-        base64_data = re.sub('^data:image/.+;base64,', '',
-                             img_element.screenshot_as_base64)
-        byte_data = base64.b64decode(base64_data)
-        image_data = BytesIO(byte_data)
-        img = Image.open(image_data)
-        pytesseract.pytesseract.tesseract_cmd = r'E:\SynologyDrive\工具\Tesseract-OCR\tesseract.exe'
-        code = pytesseract.image_to_string(img)
-        return code
+    # def read_code(self, img_element):
+    #     '读取验证码'
+    #     base64_data = re.sub('^data:image/.+;base64,', '',
+    #                          img_element.screenshot_as_base64)
+    #     byte_data = base64.b64decode(base64_data)
+    #     image_data = BytesIO(byte_data)
+    #     img = Image.open(image_data)
+    #     pytesseract.pytesseract.tesseract_cmd = r'E:\SynologyDrive\工具\Tesseract-OCR\tesseract.exe'
+    #     code = pytesseract.image_to_string(img)
+    #     return code
 
     def scroll(self):
         '下滚'
