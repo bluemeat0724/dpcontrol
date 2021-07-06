@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link type="text/css" href="static/default.css" rel="Stylesheet" />
+    <title>{{ title }}</title>
+</head>
+<body>
+<h1>{{ title }}</h1>
+<div id="explain">{{ info }}</div>
+<div id="site">
+    <form method="POST">
+		{% for field in form if field.widget.input_type != 'hidden' %}
+        <p>{{ field }}</p>
+        {% endfor %}
+	</form>
+</div>
+{% if form_b != None %}
+<div id="btn">
+    <form method="POST">
+		{% for field in form_b if field.widget.input_type != 'hidden' %}
+        <p>{{ field }}</p>
+        {% endfor %}
+	</form>
+</div>
+{% else %}
+{% endif %}
+</body>
+</html>
